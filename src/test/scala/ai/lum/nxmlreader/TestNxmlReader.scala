@@ -10,12 +10,23 @@ class TestNxmlReader extends Test {
   val dir = "./src/test/resources/"
   val inSubdir = "in/"
   val outSubdir = "out/"
-  val filenames = Seq("PMC1702562.nxml", "PMC2958468.nxml")
+  val filenames = new File(dir, inSubdir).listFiles().map { longFilename =>
+    longFilename.getName
+  }
+
   val nxmlReader = new NxmlReader()
 
   def textFromFile(path: String): String = {
-    Using.resource(Source.fromFile(path, utf8)) { source =>
+    // The Using.resource does not work on a Source in Scala 2.11.
+    var source: Source = null
+
+    try {
+      source = Source.fromFile(path, utf8)
       source.mkString
+    }
+    finally {
+      if (source != null)
+        source.close()
     }
   }
 
@@ -32,7 +43,8 @@ class TestNxmlReader extends Test {
     val textOut = nxmlDocument.text
 
     Using.resource(printWriterFromFile(dir + outSubdir + filename)) { printWriter =>
-      printWriter.println(textOut)
+      println(s"Writing $filename")
+      printWriter.print(textOut)
     }
   }
 
