@@ -18,12 +18,41 @@ case class NXMLPreprocessor(
     // handle tag representing a line break
     case <break/> => Text("\n")
 
-    // surround subscripts and superscripts with spaces
-    case <sup>{Seq(text @ _*)}</sup> => <sup> {transformText(text.text)} </sup>
-    case <sub>{Seq(text @ _*)}</sub> => <sub> {transformText(text.text)} </sub>
+    // This below is the Scala 2 version.
+    // surround subscripts and superscripts with spaces.
+    // It should be used with TestNxmlReader to populate
+    // the test output directory for regression testing.
+//    case <sup>{text @ _*}</sup> =>
+//      println(s"found sup with text ${text.text}")
+//      <sup> {transformText(text.text)} </sup>
+//    case <sub>{text @ _*}</sub> =>
+//      println(s"found sub with text ${text.text}")
+//      <sub> {transformText(text.text)} </sub>
 
     // remove latex and tables from text
-    case <tex-math>{Seq(_*)}</tex-math> => Nil
+//    case <tex-math>{text @ _*}</tex-math> =>
+//      println(s"Found text-math with text ${text.text}")
+//      Nil
+
+    // This below is the Scala 2-3 version with some warnings for Scala 2.
+    // surround subscripts and superscripts with spaces
+    case <sup>{Seq(text @ _*)}</sup> =>
+      println(s"found sup with text ${text.text}")
+      <sup> {transformText(text.text)} </sup>
+    case <sub>{Seq(text @ _*)}</sub> =>
+      println(s"found sub with text ${text.text}")
+      <sub> {transformText(text.text)} </sub>
+
+    // remove latex and tables from text
+    case <tex-math>{Seq(text @ _*)}</tex-math> =>
+      println(s"Found tex-math with text ${text.text}")
+      Nil
+    case <tex-math></tex-math> =>
+      // Scala 2.11 matches this.
+      println(s"Found tex-math with no text")
+      Nil
+
+    // This is generic again.
     case e: Elem if e.label == "table-wrap" => Nil // FIXME this is removing captions too
 
     // append dots to title and surround it with newlines
