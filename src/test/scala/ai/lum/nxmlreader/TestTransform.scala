@@ -8,6 +8,8 @@ class TestTransform extends Test {
     // case <sub>{text @ _*}</sub> => // old version
     case <sub>{Seq(text @ _*)}</sub> => // new version
       text.text
+    case <sub/> =>
+      ""
     case _ => "non-match"
   }
 
@@ -37,7 +39,7 @@ class TestTransform extends Test {
     actual should be (expected)
   }
 
-  ignore should "match non-existent text" in {
+  it should "match non-existent text" in {
     val text = ""
     val actual = transform(<sub></sub>)
     val expected = text
@@ -45,7 +47,7 @@ class TestTransform extends Test {
     actual should be (expected)
   }
 
-  ignore should "match stand-alone tag" in {
+  it should "match stand-alone tag" in {
     val text = ""
     val actual = transform(<sub/>)
     val expected = text

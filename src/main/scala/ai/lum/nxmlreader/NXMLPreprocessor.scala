@@ -37,23 +37,23 @@ case class NXMLPreprocessor(
     // This below is the Scala 2-3 version with some warnings for Scala 2.
     // surround subscripts and superscripts with spaces
     case <sup>{Seq(text @ _*)}</sup> =>
-      println(s"found sup with text ${text.text}")
+//      println(s"found sup with text ${text.text}")
       <sup> {transformText(text.text)} </sup>
     case <sup/> =>
-      println(s"found sup with no text")
+//      println(s"found sup with no text")
       <sup>  </sup>
     case <sub>{Seq(text @ _*)}</sub> =>
-      println(s"found sub with text ${text.text}")
+//      println(s"found sub with text ${text.text}")
       <sub> {transformText(text.text)} </sub>
     case <sub/> =>
-      println(s"found sub with no text")
+//      println(s"found sub with no text")
       <sub>  </sub>
     // remove latex and tables from text
     case <tex-math>{Seq(text @ _*)}</tex-math> =>
-      println(s"Found tex-math with text ${text.text}")
+//      println(s"Found tex-math with text ${text.text}")
       Nil
     case <tex-math/> =>
-      println(s"Found tex-math with no text")
+//      println(s"Found tex-math with no text")
       Nil
 
     // This is generic again.
