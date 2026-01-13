@@ -44,4 +44,12 @@ class TestTransform extends Test {
 
     actual should be (expected)
   }
+
+  ignore should "match stand-alone tag" in {
+    val text = ""
+    val actual = transform(<sub/>)
+    val expected = text
+
+    actual should be (expected)
+  }
 }
