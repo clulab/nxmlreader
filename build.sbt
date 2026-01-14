@@ -7,7 +7,7 @@ organization := "ai.lum"
 val scala211 = "2.11.12" // up to 2.11.12
 val scala212 = "2.12.21" // up to 2.12.21
 val scala213 = "2.13.17" // up to 2.13.17
-val scala30  = "3.0.2"   // up to 3.0.2 // not possible because commons is 3.1.3
+val scala30  = "3.0.2"   // up to 3.0.2 // not possible because common is 3.1.3
 val scala31  = "3.1.3"   // up to 3.1.3, for maximum compatibility
 val scala32  = "3.2.2"   // up to 3.2.2
 val scala33  = "3.3.7"   // up to 3.3.7 (LTS) // works starting with this
@@ -15,9 +15,9 @@ val scala34  = "3.4.3"   // up to 3.4.3
 val scala35  = "3.5.2"   // up to 3.5.2
 val scala36  = "3.6.4"   // up to 3.6.4
 val scala37  = "3.7.4"   // up to 3.7.4
-val scala3   = scala33
+val scala3   = scala31
 
-ThisBuild / crossScalaVersions := Seq(scala212, scala211, scala213, scala31, scala32, scala33, scala34, scala35, scala36, scala37)
+ThisBuild / crossScalaVersions := Seq(scala212, scala211, scala213, scala3) // scala31, scala32, scala33, scala34, scala35, scala36, scala37)
 ThisBuild / scalaVersion := scala212
 
 scalacOptions ++= {
