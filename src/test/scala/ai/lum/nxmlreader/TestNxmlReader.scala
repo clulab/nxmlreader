@@ -60,10 +60,10 @@ class TestNxmlReader extends Test {
 
   def testFilename(filename: String): Unit = {
     it should "reproduce " + filename in {
-      val textIn = textFromFile(dir + inSubdir + filename)
+      val textIn = textFromFile(dir + inSubdir + filename).replace("\r", "")
       val nxmlDocument = nxmlReader.parse(textIn)
       val actualTextOut = nxmlDocument.text
-      val expectedTextOut = textFromFile(dir + outSubdir + filename)
+      val expectedTextOut = textFromFile(dir + outSubdir + filename).replace("\r", "")
 
       actualTextOut should be (expectedTextOut)
     }
