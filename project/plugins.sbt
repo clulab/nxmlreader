@@ -1,3 +1,3 @@
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.0.0")
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "1.1")
-addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.4")
+// Latest version numbers were updated on 2026-04-24.
+addSbtPlugin("com.github.sbt"    % "sbt-pgp"      % "2.3.1") // up to 2.3.1
+addSbtPlugin("com.github.sbt"    % "sbt-release"  % "1.4.0") // up to 1.4.0

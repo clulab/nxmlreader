@@ -81,7 +81,7 @@ class NxmlDocument(val root: Node, val preprocessor: Preprocessor) {
   }
 
   @tailrec
-  final def findXrefs(remaining: Seq[Tree], results: Seq[Tree]): Seq[Tree] = remaining match {
+  final def findXrefs(remaining: Seq[Tree], results: Seq[Tree]): Seq[Tree] = (remaining: @unchecked) match {
     case Seq() => results
     case (n:NonTerminal) +: rest => findXrefs(n.children ++ rest, results)
     case (t:Terminal) +: rest if t.label == "xref" => findXrefs(rest, t +: results)
@@ -111,7 +111,7 @@ class NxmlDocument(val root: Node, val preprocessor: Preprocessor) {
     def mkTree(node: Node, index: Int): Option[Tree] = node match {
       case n @ Text(string) =>
         Some(new Terminal(n.label, string, Interval.ofLength(index, string.length)))
-      case n:Atom[String] =>
+      case n:Atom[String @unchecked] =>
         Some(new Terminal(n.label, n.data, Interval.ofLength(index, n.data.length)))
       case n if n.label == "title" =>
         val string = n.text
