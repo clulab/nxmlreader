@@ -1,4 +1,3 @@
-import ReleaseTransformations._
 
 // Latest version numbers were updated on 2026-04-24.
 val scala211 = "2.11.12" // up to 2.11.12
@@ -7,14 +6,10 @@ val scala213 = "2.13.18" // up to 2.13.18
 val scala31  = "3.1.3"   // up to 3.1.3
 // Only the LTS versions are listed next.
 val scala33  = "3.3.7"   // up to 3.3.7
-val scala3   = scala31
+val scala3   = scala33
 
 ThisBuild / crossScalaVersions := Seq(scala212, scala211, scala213, scala3)
 ThisBuild / scalaVersion := scala212
-
-name := "nxmlreader"
-
-organization := "ai.lum"
 
 scalacOptions ++= {
   val noAdaptedArgsOpt = CrossVersion.partialVersion(scalaVersion.value) match {
@@ -70,58 +65,3 @@ libraryDependencies ++= {
   )
 }
 
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,
-  runClean,
-  releaseStepCommandAndRemaining("+test"),
-  setReleaseVersion,
-  commitReleaseVersion,
-  tagRelease,
-  releaseStepCommandAndRemaining("+publishSigned"),
-  setNextVersion,
-  commitNextVersion,
-  releaseStepCommandAndRemaining("sonatypeReleaseAll"),
-  pushChanges
-)
-
-// Publishing settings
-
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-
-publishMavenStyle := true
-
-publishArtifact in Test := false
-
-pomIncludeRepository := { _ => false }
-
-pomExtra :=
-  <url>https://github.com/lum-ai/nxmlreader</url>
-  <licenses>
-    <license>
-      <name>Apache 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
-  <scm>
-    <url>scm:git:github.com/lum-ai/nxmlreader</url>
-    <connection>scm:git:git@github.com:lum-ai/nxmlreader.git</connection>
-  </scm>
-  <developers>
-    <developer>
-      <id>marcovzla</id>
-      <name>Marco Antonio Valenzuela Escárcega</name>
-      <url>lum.ai</url>
-    </developer>
-    <developer>
-      <id>ghp</id>
-      <name>Gus Hahn-Powell</name>
-      <url>lum.ai</url>
-    </developer>
-  </developers>
