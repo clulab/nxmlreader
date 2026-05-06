@@ -6,7 +6,7 @@ val scala213 = "2.13.18" // up to 2.13.18
 val scala31  = "3.1.3"   // up to 3.1.3
 // Only the LTS versions are listed next.
 val scala33  = "3.3.7"   // up to 3.3.7
-val scala3   = scala33
+val scala3   = scala31
 
 ThisBuild / crossScalaVersions := Seq(scala212, scala211, scala213, scala3)
 ThisBuild / scalaVersion := scala212
