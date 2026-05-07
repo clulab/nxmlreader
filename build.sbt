@@ -59,8 +59,7 @@ libraryDependencies ++= {
     // 3.2.20 of below depends on scala3-library 3.1.3, so use this one for cross-compilation.
     "org.scalatest"          %% "scalatest"               % "3.2.20" % "test",
     // 2.9.0 of below depends on scala3-library 3.1.3, so use this one for cross-compilation.
-    "org.scala-lang.modules" %% "scala-collection-compat" % "2.7.0" % "test",
-    "ai.lum"                 %% "common"                  % "0.2.0-SNAPSHOT",
+    "org.scala-lang.modules" %% "scala-collection-compat" % "2.9.0" % "test",
     "org.scala-lang.modules" %% "scala-xml"               % scalaXmlVersion
   )
 }
