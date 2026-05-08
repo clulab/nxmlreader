@@ -1,5 +1,6 @@
 package ai.lum.nxmlreader
 
+import ai.lum.common.Interval
 import ai.lum.nxmlreader.standoff._
 
 import scala.annotation.tailrec

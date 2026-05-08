@@ -1,6 +1,6 @@
 package ai.lum.nxmlreader.standoff
 
-import ai.lum.nxmlreader.Interval
+import ai.lum.common.Interval
 
 sealed trait Tree {
 
