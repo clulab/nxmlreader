@@ -1,11 +1,9 @@
 package ai.lum.nxmlreader
 
-import scala.xml._
-import ai.lum.common.Interval
 import ai.lum.nxmlreader.standoff._
 
 import scala.annotation.tailrec
-
+import scala.xml._
 
 class NxmlDocument(val root: Node, val preprocessor: Preprocessor) {
 
